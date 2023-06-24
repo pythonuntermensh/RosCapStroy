@@ -1,7 +1,7 @@
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
 import '../App.css'
-import {useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {responsibilitiesAPI} from "../services/FormService";
 
 const validationSchema = Yup.object({
@@ -14,6 +14,56 @@ export const MyForm = () => {
     const [textData, setTextData] = useState(null)
     const [splitResponsibilities, {data, error, isLoading}] = responsibilitiesAPI.useSplitResponsibilitiesMutation()
 
+    const h2Ref1 = useRef(null);
+    const h2Ref2 = useRef(null);
+    const h2Ref3 = useRef(null);
+    const h2Ref4 = useRef(null);
+    const pRef1 = useRef(null);
+    const pRef2 = useRef(null);
+    const pRef3 = useRef(null);
+    const pRef4 = useRef(null);
+
+    const copyToClipboard = () => {
+        let textToCopy = '';
+
+        if (h2Ref1.current) {
+            textToCopy += h2Ref1.current.innerText + '\n';
+        }
+        if (pRef1.current) {
+            textToCopy += pRef1.current.innerText + '\n';
+        }
+
+        if (h2Ref2.current) {
+            textToCopy += h2Ref2.current.innerText + '\n';
+        }
+        if (pRef2.current) {
+            textToCopy += pRef2.current.innerText + '\n';
+        }
+
+        if (h2Ref3.current) {
+            textToCopy += h2Ref3.current.innerText + '\n';
+        }
+        if (pRef3.current) {
+            textToCopy += pRef3.current.innerText + '\n';
+        }
+
+        if (h2Ref4.current) {
+            textToCopy += h2Ref4.current.innerText + '\n';
+        }
+        if (pRef4.current) {
+            textToCopy += pRef4.current.innerText + '\n';
+        }
+
+        navigator.clipboard.writeText(textToCopy)
+            .then(() => {
+                console.log('Текст скопирован в буфер обмена');
+            })
+            .catch((error) => {
+                console.error('Ошибка при копировании текста:', error);
+            });
+    };
+
+
     const onSubmit = async (values) => {
         setSubmitted(true)
         const data = await splitResponsibilities({text: values.responsibilitiesField})
@@ -24,21 +74,9 @@ export const MyForm = () => {
     const formik = useFormik({
         initialValues: {
             responsibilitiesField: '',
-            // termsField: '',
-            // requirementsField: '',
-            // notesField: '',
         },
         validationSchema,
         onSubmit
-        /*onSubmit: (values) => {
-            setLoading(true);
-            // Здесь вы можете выполнить запрос к серверу для отправки данных формы
-            setSubmitted(true);
-            setTimeout(() => {
-                console.log(values);
-                setLoading(false);
-            }, 2000);
-        },*/
     });
 
     return (
@@ -68,50 +106,6 @@ export const MyForm = () => {
                     <div className="text-red-500 mt-2">{formik.errors.responsibilitiesField}</div>
                 ) : null}
 
-                {/*<label htmlFor="termsField" className="block mb-2 mt-6 text-lg font-medium text-left">
-                Условия
-            </label>
-            <textarea
-                id="termsField"
-                name="termsField"
-                rows="4"
-                className="block p-2.5 w-full text-base text-gray-900 bg-gray-50 rounded-lg border
-                          border-gray-300 focus:ring-blue-500 focus:border-blue-500 outline-0"
-                placeholder="Напишите ваш текст здесь..."
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.termsField}
-            />
-
-            <label htmlFor="requirementsField" className="block mb-2 mt-6 text-lg font-medium text-left">
-                Требование к соискателю
-            </label>
-            <textarea
-                id="requirementsField"
-                name="requirementsField"
-                rows="4"
-                className="block p-2.5 w-full text-base text-gray-900 bg-gray-50 rounded-lg border
-                          border-gray-300 focus:ring-blue-500 focus:border-blue-500 outline-0"
-                placeholder="Напишите ваш текст здесь..."
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.requirementsField}
-            />
-
-            <label htmlFor="notesField" className="block mb-2 mt-6 text-lg font-medium text-left">
-                Примечания
-            </label>
-            <textarea
-                id="notesField"
-                name="notesField"
-                rows="4"
-                className="block p-2.5 w-full text-base text-gray-900 bg-gray-50 rounded-lg border
-                          border-gray-300 focus:ring-blue-500 focus:border-blue-500 outline-0"
-                placeholder="Напишите ваш текст здесь..."
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.notesField}
-            />*/}
                 <button
                     className="bg-blue-500 hover:bg-blue-400 text-white py-3 outline-0 px-6 border-b-4 border-blue-700
                 hover:border-blue-500 rounded transition-all mt-4"
@@ -127,10 +121,33 @@ export const MyForm = () => {
             </div> : null}
 
             {submitted && !isLoading ? (
-                <div>
-                    <button onClick={(value) => setSubmitted(!value)}>Назад к форме</button>
-                    <h2>Данные успешно отправлены!</h2>
-                    <p>Текст: {data.notes}</p>
+                <div className='form w-11/12 md:w-9/12 lg:w-2/4
+                shadow-2xl m-auto my-2 last:text-right bg-sky-400 bg-opacity-30
+                p-4 rounded-2xl'>
+                    <button onClick={(value) => setSubmitted(!value)} className='hover:underline'> {`<`} Назад к форме
+                    </button>
+
+                    <h2 className="block mb-2 mt-6 text-lg font-medium text-left" ref={h2Ref1}>
+                        Должностные обязанности:
+                    </h2>
+                    <p className="text-left" ref={pRef1}>#data.responsibilities</p>
+
+                    <h2 className="block mb-2 mt-6 text-lg font-medium text-left" ref={h2Ref2}>
+                        Примечания:
+                    </h2>
+                    <p className="text-left" ref={pRef2}>#data.notes</p>
+
+                    <h2 className="block mb-2 mt-6 text-lg font-medium text-left" ref={h2Ref3}>
+                        Условия:
+                    </h2>
+                    <p className="text-left" ref={pRef3}>#data.terms</p>
+
+                    <h2 className="block mb-2 mt-6 text-lg font-medium text-left" ref={h2Ref4}>
+                        Требования к соискателям:
+                    </h2>
+                    <p className="text-left" ref={pRef4}>#data.requirements</p>
+
+                    <button onClick={copyToClipboard}>Копировать</button>
                 </div>
             ) : null}
         </>
