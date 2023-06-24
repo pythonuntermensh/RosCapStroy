@@ -6,7 +6,7 @@ import pickle
 from utils import Predictor
 
 TOKEN = "5997943335:AAHuiKuIU6PiWtTbTdt2RB6LFuO2TRe18Kc"
-MODEL_FILE_NAME = "model_v2.pk"
+MODEL_FILE_NAME = "model_v3.pk"
 ADMIN_ID = 1731918785
 
 def load_model():

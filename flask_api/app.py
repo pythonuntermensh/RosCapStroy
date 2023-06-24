@@ -7,7 +7,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-MODEL_FILE_NAME = "model_v2.pk"
+MODEL_FILE_NAME = "model_v3.pk"
 
 model = None
 
