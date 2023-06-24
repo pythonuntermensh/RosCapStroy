@@ -5,6 +5,7 @@ class Predictor():
         self.model = model
 
     def _prepare_text(self, text):
+        text = text.replace("&quot;", "")
         delimiters = "условия", "требования", "примечания", "обязанности", ";", "\n"
         regex_pattern = '|'.join(map(re.escape, delimiters))
         regex_pattern += "|" + '(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s'
