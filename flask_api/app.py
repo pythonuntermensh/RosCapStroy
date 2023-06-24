@@ -10,6 +10,7 @@ CORS(app)
 MODEL_FILE_NAME = "model_v3.pk"
 
 model = None
+predictor = None
 
 def load_model():
     print("Loading the model...")
@@ -29,8 +30,6 @@ def apicall():
     if not text:
         return 400
     else:
-        predictor = Predictor(model)
-        
         predictions = predictor.get_final_categories(text)
 
         responses = jsonify(predictions)
@@ -40,4 +39,5 @@ def apicall():
     
 if __name__ == '__main__':
     model = load_model()
+    predictor = Predictor(model)
     app.run(debug=True)
