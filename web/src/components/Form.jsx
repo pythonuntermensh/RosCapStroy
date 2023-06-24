@@ -130,7 +130,7 @@ export const MyForm = () => {
                 <div>
                     <button onClick={(value) => setSubmitted(!value)}>Назад к форме</button>
                     <h2>Данные успешно отправлены!</h2>
-                    <p>Текст: {data.title}</p>
+                    <p>Текст: {data.notes}</p>
                 </div>
             ) : null}
         </>
