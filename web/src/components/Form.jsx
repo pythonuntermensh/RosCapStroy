@@ -130,22 +130,22 @@ export const MyForm = () => {
                     <h2 className="block mb-2 mt-6 text-lg font-medium text-left" ref={h2Ref1}>
                         Должностные обязанности:
                     </h2>
-                    <p className="text-left" ref={pRef1}>#data.responsibilities</p>
+                    <p className="text-left" ref={pRef1}>{data.responsibilities}</p>
 
                     <h2 className="block mb-2 mt-6 text-lg font-medium text-left" ref={h2Ref2}>
                         Примечания:
                     </h2>
-                    <p className="text-left" ref={pRef2}>#data.notes</p>
+                    <p className="text-left" ref={pRef2}>{data.notes}</p>
 
                     <h2 className="block mb-2 mt-6 text-lg font-medium text-left" ref={h2Ref3}>
                         Условия:
                     </h2>
-                    <p className="text-left" ref={pRef3}>#data.terms</p>
+                    <p className="text-left" ref={pRef3}>{data.terms}</p>
 
                     <h2 className="block mb-2 mt-6 text-lg font-medium text-left" ref={h2Ref4}>
                         Требования к соискателям:
                     </h2>
-                    <p className="text-left" ref={pRef4}>#data.requirements</p>
+                    <p className="text-left" ref={pRef4}>{data.requirements}</p>
 
                     <button onClick={copyToClipboard}>Копировать</button>
                 </div>
