@@ -1,0 +1,8 @@
+.form {
+    animation: 2s show ease;
+}
+
+@keyframes show {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
