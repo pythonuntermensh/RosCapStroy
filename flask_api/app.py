@@ -2,10 +2,10 @@ import pickle
 from flask import Flask, jsonify, request
 
 from util import Predictor
-#from flask_cors import CORS
+from flask_cors import CORS
 
 app = Flask(__name__)
-#CORS(app)
+CORS(app)
 
 MODEL_FILE_NAME = "model_v2.pk"
 
