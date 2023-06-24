@@ -7,7 +7,7 @@ from util import Predictor
 app = Flask(__name__)
 #CORS(app)
 
-MODEL_FILE_NAME = "model_v1.pk"
+MODEL_FILE_NAME = "model_v2.pk"
 
 model = None
 
