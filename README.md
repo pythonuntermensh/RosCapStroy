@@ -1,7 +1,7 @@
 # RosCapStroy
 
 # Зависимости каждого модуля:
-  flask_api:
+  flask_api:\n
     python3
     библиотеки:
       pickle, flask, flask_cors, scikit-learn
