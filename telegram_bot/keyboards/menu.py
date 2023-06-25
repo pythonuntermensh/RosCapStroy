@@ -9,6 +9,9 @@ menu = ReplyKeyboardMarkup(
         ],
         [
             KeyboardButton("Написать отзыв💬")
+        ],
+        [
+            KeyboardButton("Наш сайт😈")
         ]
     ]
 )

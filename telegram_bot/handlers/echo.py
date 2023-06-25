@@ -37,6 +37,11 @@ async def handle_default_echo(message: types.Message, state: FSMContext):
     await state.finish()
 
 
+@dp.message_handler(text=["Наш сайт😈"])
+async def handle_default_echo(message: types.Message):
+    await message.answer("Наш великолепный веб-сайт - https://12mativ.github.io/RosCapStroyWeb/", reply_markup=menu)
+
+
 @dp.message_handler(state=None)
 async def handle_default_echo(message: types.Message):
     await message.answer("Неизвестная команда, попробуйте еще раз!⛔", reply_markup=menu)
