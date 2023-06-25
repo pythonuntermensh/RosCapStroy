@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 import '../App.css'
 import {useRef, useState} from "react";
 import {responsibilitiesAPI} from "../services/FormService";
+import qrCodeImg from '../assets/01.jpg'
 
 const validationSchema = Yup.object({
     responsibilitiesField: Yup.string().required('Поле обязательно для заполнения'),
@@ -149,6 +150,8 @@ export const MyForm = () => {
                 >
                     Отправить
                 </button>
+                <a href="https://t.me/hackatop_cp_chatbot" className='block text-center my-4 hover:underline'>Ссылка на нашего Telegram-бота</a>
+                <img src={qrCodeImg} className='w-40 m-auto rounded-lg' alt="Telegram QR Code"/>
             </form>) : null}
 
             {isLoading ? <div
